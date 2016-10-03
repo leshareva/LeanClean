@@ -1,0 +1,9 @@
+{
+  "name": "LeanDesign",
+  "short_name": "LeanDesign",
+  "start_url": "signUp.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "version": "0.1",
+  "permissions": ["gcm", "storage"],
+}

@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Lean design">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лин-дизайн</title>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="styles/main.css">
+  
+<!--   <script src="scripts/jquery.min.js"></script> -->
+    <script src="scripts/moment.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="bower_components/polymerfire/polymerfire.html">
+  
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<div class="header"></div>
+		
+	<div class="blank_page"></div>	
+	
+	<main class="page page__layout">
+		<div class="page__layout_left" ></div>
+		<div id="stock-container" style="display: none;"></div>	
+		<div id="chat-container" class="page__layout_center">
+			<div id="messages-card" class="messagesCard">
+		     	<div class="chatRoom">
+			          <div id="messages"> 
+			            <span id="message-filler"></span>
+			          </div> 
+		      
+					  <form id="message-form" action="#">
+						  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> 
+			              	<input class="mdl-textfield__input" type="text" id="message"> 
+						  	<label class="mdl-textfield__label" for="message">Message...</label> 
+						  </div> 
+						  <button id="submit" disabled type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Send</button> 
+		          	  </form> 
+		          	  
+				  	  <form id="image-form" action="#"> 
+				  	  	<input id="mediaCapture" type="file" accept="image/*,capture=camera" multiple> 
+				  	  	<button id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white"><i class="material-icons">image</i></button> 
+		          	  </form> 
+			  	</div> 
+	      	</div> 
+
+		  	<div class="aboutTask">  
+				<div class="aboutTask__ClientCard"></div> 
+				<div class="aboutTask__info"></div> 
+				<div class="aboutTask__steps"><div class="aboutTask__step aboutTask__step_one">Понимание</div><div class="aboutTask__step aboutTask__step_two">Черновик</div><div class="aboutTask__step aboutTask__step_three">Чистовик</div><div class="aboutTask__step aboutTask__step_four">Исходники</div> 
+				</div> 
+				<div class="aboutTask__awarenessForm"></div> 
+				<div class="aboutTask__concept" style="display:none;"></div> 
+				<div class="aboutTask__design" style="display:none;"></div>	 			
+				<div class="aboutTask__inArchive" style="display:none;"></div> 
+	 		</div>
+		</div>
+  	</main>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+	
+	
+	<audio id="bells" src="bell.mp3" preload="auto"></audio>		
+	
+	<script data-main="config" src="scripts/new/require.js"></script>
+	<script>
+		require(['config'], function() {
+			require(['jquery'])
+			require([ 'firebase'])
+			require([ 'fsconfig'])
+			require(['auth'])
+		})
+	</script>
+
+</body>
+</html>
