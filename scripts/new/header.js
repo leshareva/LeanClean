@@ -6,24 +6,31 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		var auth = firebase.auth()
 		var database = firebase.database()
 		
-		var btnLogout = document.getElementById('sign-out')
-		var btnStock = document.getElementById('openStock')
+		var btnLogout = document.getElementById('sign-out');
+		headerMeth.btnStock = document.getElementById('openStock');
 		
+         
 		btnLogout.addEventListener('click', e => {
 			 auth.signOut();
 			 location.reload();
 			 document.querySelector('.page').style.display = 'none';
-		 })
+		 });
+        
+    
+   
 		
 		
-		var stockContainer = document.getElementById('all-tasks')
+		var stockContainer = document.getElementById('all-tasks');
 		
-				btnStock.addEventListener('click', e => {
-						require(['stock'])
-						btnStock.style.display = "none"
+				headerMeth.btnStock.addEventListener('click', e => {
+						
+                        window.location.href = "/stock.html";
+                        
+                        
+						/*btnStock.style.display = "none"
 						document.getElementById('chat-container').style.display = "none"
-						document.getElementById('stock-container').style.display = "block"
-				})
+						document.getElementById('stock-container').style.display = "block"*/
+				});
 			
 		
 		
@@ -41,6 +48,6 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		    rateLabel.textContent = rate;	
 		}
 		
-		return headerMeth
+		return headerMeth;
 	
 })

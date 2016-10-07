@@ -1,22 +1,23 @@
 'use strict';
 
 define(['templates', 'firebase', 'fsconfig'], function(templates) {
-	var database = firebase.database()	
+    var database = firebase.database()	
 	var tasksRef = database.ref('tasks')
-	var auth = firebase.auth()
-	
-	document.getElementById('stock-container').innerHTML = '<center><h2 class="taskStock__title">Новые задачи</h2></center><div id="all-tasks"></div>'
+	var auth = firebase.auth();
+    var storage = firebase.storage();
+	document.getElementById('stock-container').innerHTML = '<center><h3 class="taskStock__title">Новые задачи</h3></center><div id="all-tasks"></div>';
+    
+    console.log('Fuck you');
 	
 	var allTasks = document.getElementById('all-tasks');
-	allTasks.innerHTML = ""
+	allTasks.innerHTML = "";
 	
 	var STOCK_TASK_TEMPLATE =
    '<div class="taskContainer taskContainer_stock mdl-shadow--2dp">' +
       '<div class="taskText" style="font-size: 14px; line-height: 22px; margin-bottom: 14px;"></div>' +
       '<button class="get-task btn btn_paper btn_active">Взять задачу</buttom>' +
     '</div>';
-	
-	
+
 	var setTask = function(data) {
 	var val = data.val();
 		displayAllTasks(data.key, val.taskId, val.text, val.status, val.imageUrl, val.toId);
@@ -56,7 +57,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 					taskVal[key] = 1;
 					database.ref('active-tasks/' + id).update(taskVal)
 					div.style.display = 'none';
-					location.reload()
+					window.location.href = "/index.html";
 	
 				});
 		}
