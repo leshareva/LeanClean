@@ -34,7 +34,7 @@ define([''], function() {
 				'</div>';
 	
 				
-	templates.HEADER_TEMPLATE =	'<div class="logo"><a onClick="location.reload()">LEAN</a></div>'+
+	templates.HEADER_TEMPLATE =	'<div class="logo"><a href="index.html">LEAN</a></div>'+
 	  '<div id="openStock" class="btn btn_sky">Сток задач</div>'+
       '<div id="user-container" class="user user_header"><div id="user-pic"></div><div class="user_user-info"></div></div>' +
 	  '<a id="sign-out" class="link link_sky"> Выйти </a>';
