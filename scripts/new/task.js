@@ -7,7 +7,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var auth = firebase.auth();
 	var database = firebase.database();
 	var storage = firebase.storage();
-	
+	var taskId = document.querySelector('.chatRoom').getAttribute('id')
 	
 	
 	var awarenessForm = document.querySelector(".aboutTask__awarenessForm")
@@ -191,6 +191,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	  let btnSend = document.getElementById('btnSendAwareness');
 	  btnSend.addEventListener('click', e => {
 		  for (var i = 0, file; file = files[i]; i++) {
+			  console.log(taskId, file, status)
 		  	sendImgToDb(taskId, file, status) 
 		 } 
 		 //изменяем статус задачи
