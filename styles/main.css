@@ -317,11 +317,11 @@ button 	{ border: none; cursor: pointer; }
 
 /* Сток задач */
 .taskStock {border: 1px #f9f9f9 solid; border-shadow: none; padding: 20px; display: none;}
-.taskStock__title {margin: auto; position: relative;}
+.taskStock__title {margin: auto; position: relative; padding: 15px;}
 .taskContainer__myTasks {padding: 10px 0px 10px 0px; cursor: pointer; display: flex;}
 
 
-.taskContainer_stock {padding: 10px 10px 10px 10px;}
+.taskContainer_stock {padding: 10px; margin-left: 15px;}
 
 .taskContainer__taskText {margin-left: 20px; font-size: 14px; line-height: 20px;  user-select: none; overflow: hidden; text-overflow: ellipsis; display: -webkit-box;  -webkit-box-orient: vertical; -webkit-line-clamp: 4; max-height: 84; }
 .taskContainer__taskStatus {margin-left: 20px; width: 100%; font-size: 12px; opacity: 0.6; pointer-events:none;}
