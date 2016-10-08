@@ -1,6 +1,6 @@
 'use strict';
 
-define(['firebase', 'fsconfig'], function() {
+define([], function() {
 	
 	var database = firebase.database()
 	var auth = firebase.auth()
@@ -13,7 +13,7 @@ define(['firebase', 'fsconfig'], function() {
 			var taskCont = document.getElementById(taskId)
 			document.getElementById('bells').play();
 			document.getElementById('bells').volume = 0.1;
-			taskCont.querySelector('.bullet').style.display = "block"
+			document.querySelector('.bullet').style.display = "block"
 		})
 	}
 	

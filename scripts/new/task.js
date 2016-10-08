@@ -7,12 +7,14 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var auth = firebase.auth();
 	var database = firebase.database();
 	var storage = firebase.storage();
-	var taskId = document.querySelector('.chatRoom').getAttribute("id")
-	var taskRef = database.ref("tasks/" + taskId);
+	
+	
 	
 	var awarenessForm = document.querySelector(".aboutTask__awarenessForm")
 	
 	taskMethods.loadTaskInfo = function(taskId) {
+		var taskRef = database.ref("tasks/" + taskId);
+		console.log('try to load tasks info')
 		taskRef.on('value', snap => {
 			let val = snap.val()
 			require(['client'], function(userMethods){
@@ -121,11 +123,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				stepTwo.className += " aboutTask__step_active"
 				stepThree.className += " aboutTask__step_active"
 				stepFour.className += " aboutTask__step_active"
-				awarenessForm.style.display = 'block';	
-				
-				
-				
-						
+				awarenessForm.style.display = 'block';			
 				location.reload()
 
 				
@@ -136,6 +134,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	
 	
 	function sendAwareness() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
 		let awarenessField = document.getElementById('awarenessField');
 		let timeField = document.getElementById('timeField');
 		let userId = auth.currentUser.uid;
@@ -155,6 +154,8 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	
 	
 	function editAwareness() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+		var taskRef = database.ref("tasks/" + taskId);
 		taskRef.update({status: "awareness"})
 		taskRef.child("awareness").once('child_added', snap => {
 			 let text = snap.val().key
