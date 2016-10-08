@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Lean design">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лин-дизайн</title>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <!-- App Styling -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="styles/main.css">
+  
+<!--   <script src="scripts/jquery.min.js"></script> -->
+    <script src="scripts/moment.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="bower_components/polymerfire/polymerfire.html">
+  
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<div class="header"></div>
+		
+	<div class="blank_page">
+        
+    </div>	
+	<main style="display:flex">
+        
+        <div id="stock-container" ></div>
+    </main>
+		
+	
+	<script data-main="config" src="scripts/new/require.js"></script>
+	<script>
+		require(['config'], function() {
+			require(['jquery'])
+			require([ 'firebase'])
+			require([ 'fsconfig'])
+			require(['auth'])
+             require(['stock'])
+                 
+             
+             
+             
+		})
+	</script>
+
+</body>
+</html>

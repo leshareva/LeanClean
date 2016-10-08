@@ -8,8 +8,9 @@ define(['jquery', 'templates'], function($, templates) {
 		var database = firebase.database();
 		var storage = firebase.storage();
 		
-			
-		document.querySelector('.page__layout_left').innerHTML = templates.MY_TASKS_VIEW;
+			var blah = document.querySelector('.page__layout_left');
+    console.log(blah);
+	if ( blah != null){	document.querySelector('.page__layout_left').innerHTML = templates.MY_TASKS_VIEW;}
 		
 		mainMethods.loadUserInfo = function(user) {
 				var userName = user.displayName;

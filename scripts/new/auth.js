@@ -29,11 +29,15 @@ define(['firebase', 'fsconfig', 'templates'], function(initialFB, fsconfig, temp
 				if (snap.child(uid).exists()) {
 					console.log('User in database')
 					document.querySelector('.blank_page').innerHTML = '';
-					document.querySelector('.header').innerHTML = templates.HEADER_TEMPLATE
+					document.querySelector('.header').innerHTML = templates.HEADER_TEMPLATE;
 					
+                        
+              
 					require(['main'], function(mainMethods) {
-							mainMethods.loadUserInfo(user)
-					}) 	
+							mainMethods.loadUserInfo(user);
+                        	var btnStock = document.getElementById('openStock');
+                            console.log(btnStock); 
+					}) ;	
 					
 				} else {
 					console.log('User not in database ' + uid)
