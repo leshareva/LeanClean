@@ -14,7 +14,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	
 	taskMethods.loadTaskInfo = function(taskId) {
 		taskRef.on('value', snap => {
-			let val = snap.val()
+			let val = snap.val() 
 			require(['client'], function(userMethods){
 				userMethods.loadUserInfo(val.fromId)
 			})
