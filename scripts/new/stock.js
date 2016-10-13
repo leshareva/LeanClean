@@ -5,10 +5,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var tasksRef = database.ref('tasks')
 	var auth = firebase.auth();
     var storage = firebase.storage();
-	document.getElementById('stock-container').innerHTML = '<center><h3 class="taskStock__title">Новые задачи</h3></center><div id="all-tasks"></div>';
+	document.getElementById('stock-container').innerHTML = '<center><h3 id="taskListTitle" class="taskStock__title">Задачек нету :(</h3></center><div id="all-tasks"></div>';
     
-    console.log('Fuck you');
-	
+   
+	var taskListTitle = document.getElementById('taskListTitle');
 	var allTasks = document.getElementById('all-tasks');
 	allTasks.innerHTML = "";
 	
@@ -18,18 +18,24 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
       '<button class="get-task btn btn_paper btn_active">Взять задачу</buttom>' +
     '</div>';
 
-	var setTask = function(data) {
+	/*var setTask = function(data) {
 	var val = data.val();
 		displayAllTasks(data.key, val.taskId, val.text, val.status, val.imageUrl, val.toId);
-  	}.bind(this);
+  	}.bind(this);*/
   	
-	tasksRef.orderByChild("toId").equalTo('designStudio').on('child_added', setTask);
-
-
+	tasksRef.orderByChild("toId").equalTo('designStudio').on('child_added', data => {
+        var val = data.val();
+		displayAllTasks(data.key, val.taskId, val.text, val.status, val.imageUrl, val.toId);
+        taskListTitle.innerText = 'Доступные задачи';
+        console.log('Задачи грузятся');
+    });
+    
+    
 	
 	function displayAllTasks(key, toId, text, status, imageUrl)  {
 		let taskCard = document.getElementById(key)
 		if (!taskCard)	 {
+            console.log('bla');
 			var container = document.createElement("div");
 			container.innerHTML = STOCK_TASK_TEMPLATE;
 			var div = container.firstChild;
@@ -64,5 +70,5 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	
 	 };	
 
-})
+});
 	

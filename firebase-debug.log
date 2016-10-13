@@ -12,3 +12,17 @@
 [info] Public Directory: ./
 [info] 
 [info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\Sancho-Pancho\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] CLI Version:  3.0.8
+[debug] Platform:     win32
+[debug] Node Version: v4.5.0
+[debug] Time:         Thu Oct 13 2016 00:15:41 GMT+0700 (Russia TZ 6 Standard Time)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: C:\Users\Sancho-Pancho\Desktop\LeanClean
+[info] Public Directory: ./
+[info] 
+[info] Server listening at: http://localhost:5000
