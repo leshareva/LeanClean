@@ -7,14 +7,16 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var auth = firebase.auth();
 	var database = firebase.database();
 	var storage = firebase.storage();
-	var taskId = document.querySelector('.chatRoom').getAttribute("id")
-	var taskRef = database.ref("tasks/" + taskId);
+	var taskId = document.querySelector('.chatRoom').getAttribute('id')
+	
 	
 	var awarenessForm = document.querySelector(".aboutTask__awarenessForm")
 	
 	taskMethods.loadTaskInfo = function(taskId) {
+		var taskRef = database.ref("tasks/" + taskId);
+		console.log('try to load tasks info')
 		taskRef.on('value', snap => {
-			let val = snap.val() 
+			let val = snap.val()
 			require(['client'], function(userMethods){
 				userMethods.loadUserInfo(val.fromId)
 			})
@@ -121,11 +123,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				stepTwo.className += " aboutTask__step_active"
 				stepThree.className += " aboutTask__step_active"
 				stepFour.className += " aboutTask__step_active"
-				awarenessForm.style.display = 'block';	
-				
-				
-				
-						
+				awarenessForm.style.display = 'block';			
 				location.reload()
 
 				
@@ -149,12 +147,30 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 			time: Number(time)
 		}
 		
-		database.ref("PriceCount").push(values)
+        if (isNumeric(timeField.value)) {
+            if (awarenessField.value != "") {
+                database.ref("PriceCount").push(values);       
+            } else {
+                alert('Нехорошо не заполнять понимание задачи');
+            }
+           
+        } else {
+            alert('Эм... '+timeField.value+'? Сёрьёзно? Это на какой планете так часы считают? Поменяйте значение в поле "Сколько часов займёт работа"');
+        }
+        
+		
 	}
+    
+	//Является ли введённое значение числом
+	function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }
 	
 	
 	
 	function editAwareness() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+		var taskRef = database.ref("tasks/" + taskId);
 		taskRef.update({status: "awareness"})
 		taskRef.child("awareness").once('child_added', snap => {
 			 let text = snap.val().key
@@ -190,6 +206,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	  let btnSend = document.getElementById('btnSendAwareness');
 	  btnSend.addEventListener('click', e => {
 		  for (var i = 0, file; file = files[i]; i++) {
+			  console.log(taskId, file, status)
 		  	sendImgToDb(taskId, file, status) 
 		 } 
 		 //изменяем статус задачи

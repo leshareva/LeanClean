@@ -5,7 +5,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var tasksRef = database.ref('tasks')
 	var auth = firebase.auth();
     var storage = firebase.storage();
-	document.getElementById('stock-container').innerHTML = '<center><h3 id="taskListTitle" class="taskStock__title">Задачек нету :(</h3></center><div id="all-tasks"></div>';
+	document.getElementById('stock-container').innerHTML = '<center><h3 id="taskListTitle" class="taskStock__title">Задачек нету :(    </h3></center><div id="all-tasks"></div>';
     
    
 	var taskListTitle = document.getElementById('taskListTitle');

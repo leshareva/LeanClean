@@ -13,7 +13,7 @@ define(['firebase', 'fsconfig'], function() {
 			var taskCont = document.getElementById(taskId)
 			document.getElementById('bells').play();
 			document.getElementById('bells').volume = 0.1;
-			taskCont.querySelector('.bullet').style.display = "block"
+//taskCont.querySelector('.bullet').style.display = "block"
 		})
 	}
 	
@@ -23,9 +23,19 @@ define(['firebase', 'fsconfig'], function() {
 			var delRef = database.ref('notifications/' + userId + '/' + snap.key)
 // 			delRef.remove()	
 			var taskCont = document.getElementById(taskId)
-			taskCont.querySelector('.bullet').style.display = "none"
+			//taskCont.querySelector('.bullet').style.display = "none"
 		})
 	}
 	
 	return notifications
 })
+
+
+
+
+
+/*
+
+
+
+*/

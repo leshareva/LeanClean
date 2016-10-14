@@ -36,7 +36,7 @@ define(['firebase', 'fsconfig', 'templates'], function(initialFB, fsconfig, temp
 					require(['main'], function(mainMethods) {
 							mainMethods.loadUserInfo(user);
                         	var btnStock = document.getElementById('openStock');
-                            console.log(btnStock); 
+                            
 					}) ;	
 					
 				} else {
