@@ -148,8 +148,24 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 			time: Number(time)
 		}
 		
-		database.ref("PriceCount").push(values)
+        if (isNumeric(timeField.value)) {
+            if (awarenessField.value != "") {
+                database.ref("PriceCount").push(values);       
+            } else {
+                alert('Нехорошо не заполнять понимание задачи');
+            }
+           
+        } else {
+            alert('Эм... '+timeField.value+'? Сёрьёзно? Это на какой планете так часы считают? Поменяйте значение в поле "Сколько часов займёт работа"');
+        }
+        
+		
 	}
+    
+	//Является ли введённое значение числом
+	function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }
 	
 	
 	

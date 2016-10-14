@@ -33,6 +33,15 @@ ul {list-style: none;}
 	margin-left: 10px;
 }
 
+.stockImage
+{
+    display: flex;
+    margin-left: 40%;
+    margin-top: 10%;
+    width: 20%;
+    height: 10%;
+}
+
 .user_header {
 	margin-right: 20px;
 }

@@ -9,7 +9,7 @@ define(['jquery', 'templates'], function($, templates) {
 		var storage = firebase.storage();
 		
 			var blah = document.querySelector('.page__layout_left');
-    console.log(blah);
+
 	if ( blah != null){	document.querySelector('.page__layout_left').innerHTML = templates.MY_TASKS_VIEW;}
 		
 		mainMethods.loadUserInfo = function(user) {
