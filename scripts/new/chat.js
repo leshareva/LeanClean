@@ -43,12 +43,17 @@ define(['jquery', 'templates'], function($, templates) {
 	  e.preventDefault();
 		  // Check that the user entered a message and is signed in.
 		  if (messageInput.value) {
-			  sendValuesToMessages({ text: messageInput.value })
-			  resetMaterialTextfield(messageInput);
-		      toggleButton();
-		      require(['push'], function(sendPush){
-			      sendPush({ message: "Новое сообщение" })
+			   
+			   var text = messageInput.value
+			  require(['push'], function(sendPush){
+			      sendPush({ message: text })
+			       
 		      })
+		      
+			  sendValuesToMessages({ text: text })
+		       resetMaterialTextfield(messageInput);
+		      toggleButton();
+
 		  }
 	}
 	
