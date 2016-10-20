@@ -53,15 +53,15 @@ define([''], function() {
 	templates.AWARENESS_VIEW = '<h4 class="aboutTask__Title awarenessForm__Title">Заполните понимание задачи</h4>' +
 			'<p>Свяжитесь с&nbsp;клиентом, заполните понимание задачи и&nbsp;укажите сколько у&nbsp;вас уйдет времени на&nbsp;задачу.</p>' +
 			'<textarea id="awarenessField" rows="5" cols="40" class="aboutTask__input aboutTask__input_awareness" placeholder="Опишите то, как вы поняли задачу "></textarea>' +
-			'<label for="timeField" class="label">Сколько дней займет работа</label><input id="timeField" type="text" class="aboutTask__input aboutTask__input_price">' +
+			'<label for="timeField" class="label">Сколько часов займет работа</label><input id="timeField" type="text" class="aboutTask__input aboutTask__input_price">' +
 			'<button id="btnSendAwareness" class="btn btn_paper btn_l">Отправить</button> ' +
 			'<a class="link aboutTask__link aboutTask__link_cancel" hidden>Отмена</a>' +
 			'<div class="aboutTask__error"></div>';	
 			
 	templates.WAITING_APPROVE = '<h4 class="aboutTask__Title awarenessForm__Title">Ждем подтверждения от клиента</h4>' +
 			'<div class="awarenessForm__awarenessText"></div>' +
-			'<p>Если в течение нескольких часок клиент не выходит на связь, позвоните ему.</p>' +
-			'<a class="link aboutTask__link">Редактировать</a>';			
+			'<p>Если в течение нескольких часов клиент не выходит на связь, позвоните ему.</p>' +
+			'<a id="editCurrentStep" class="link aboutTask__link">Редактировать</a>';			
 					
 	
 	templates.CONCEPT_VIEW = '<div class="alert_paper aboutTask__alert_paper" hidden></div>' +
@@ -75,8 +75,13 @@ define([''], function() {
 	templates.MY_TASKS_VIEW = '<div id="tasking" class="tasks-grid"><h4 class="tasks-grid__title">Мои задачи</h4><ul id="tasks" class="myTasks"></ul></div>';
 	 	
  	
-
-
+/*var editCurrentStep = document.getElementById('editCurrentStep');
+                editCurrentStep.addEventListener('click', e => {
+                    awarenessForm.innerHTML = templates.CONCEPT_VIEW;
+                });*/
+    
+    
+    
 	
 				
 	return templates

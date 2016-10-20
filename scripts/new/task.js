@@ -69,7 +69,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				stepOne.className += " aboutTask__step_active"
 				stepTwo.className += " aboutTask__step_active"
 				awarenessForm.style.display = 'block';
-				
+				awarenessForm.querySelector('.aboutTask__link').addEventListener('click', editConcept.bind(this));
 				
 			} else if (val.status == "design") {
 				awarenessForm.innerHTML = templates.CONCEPT_VIEW;
@@ -90,7 +90,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				stepOne.className += " aboutTask__step_active"
 				stepTwo.className += " aboutTask__step_active"
 				awarenessForm.style.display = 'block';
-				
+				awarenessForm.querySelector('.aboutTask__link').addEventListener('click', editDesign.bind(this));
 				
 			} else if (val.status == "sources") {
 				awarenessForm.innerHTML = templates.CONCEPT_VIEW;
@@ -132,8 +132,12 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		})
 	}
 	
-	
-	function sendAwareness() {
+
+    
+    
+    
+    function sendAwareness() {
+        var taskId = document.querySelector('.chatRoom').getAttribute("id");
 		let awarenessField = document.getElementById('awarenessField');
 		let timeField = document.getElementById('timeField');
 		let userId = auth.currentUser.uid;
@@ -164,8 +168,9 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	//Является ли введённое значение числом
 	function isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
-    }
+    } 
 	
+    
 	
 	
 	function editAwareness() {
@@ -184,7 +189,56 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 			btnSend.addEventListener('click', sendAwareness.bind(this))
 		})
 	};
-	
+    
+    
+    
+    
+    
+    function editConcept() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+		var taskRef = database.ref("tasks/" + taskId);
+		taskRef.update({status: "concept"})
+		taskRef.child("concept").once('child_added', snap => {
+			 let text = snap.val().key
+             taskInfoView.removeAttribute("hidden")
+			 awarenessForm.innerHTML = templates.CONCEPT_VIEW;
+			 document.getElementById('awarenessField').value = snap.val().text;
+			 document.querySelector('.aboutTask__link_cancel').removeAttribute('hidden')
+			 document.querySelector('.aboutTask__link_cancel').addEventListener('click', e => {
+				 awarenessForm.innerHTML = templates.WAITING_APPROVE;
+			 })
+             
+             awarenessForm.querySelector(".aboutTask__Title").textContent = "Работаем над черновиком"
+             awarenessForm.querySelector(".awarenessForm__p").textContent = "Помним, что черновик это очень быстро и главное свериться с клиентом - туда ли мы движемся."
+             var inputConcept = document.getElementById("imgConcept");
+             inputConcept.addEventListener('change', saveImages.bind(this));
+		})
+	};
+    
+    
+    
+    function editDesign() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+		var taskRef = database.ref("tasks/" + taskId);
+		taskRef.update({status: "design"})
+		taskRef.child("design").once('child_added', snap => {
+			 let text = snap.val().key
+             taskInfoView.removeAttribute("hidden")
+			 awarenessForm.innerHTML = templates.CONCEPT_VIEW;
+			 document.getElementById('awarenessField').value = snap.val().text;
+			 document.querySelector('.aboutTask__link_cancel').removeAttribute('hidden')
+			 document.querySelector('.aboutTask__link_cancel').addEventListener('click', e => {
+				 awarenessForm.innerHTML = templates.WAITING_APPROVE;
+			 })
+             
+             awarenessForm.querySelector(".aboutTask__Title").textContent = "Работаем над черновиком"
+             awarenessForm.querySelector(".awarenessForm__p").textContent = "Помним, что черновик это очень быстро и главное свериться с клиентом - туда ли мы движемся."
+             var inputConcept = document.getElementById("imgConcept");
+             inputConcept.addEventListener('change', saveImages.bind(this));
+		})
+	};
+    
+
 	
 	function saveImages(event) {
 	  var files = event.target.files;
@@ -211,9 +265,9 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		 } 
 		 //изменяем статус задачи
 		updateTaskStatus(taskId, status)
-		 require(['push'], function(sendPush){
+		 /*require(['push'], function(sendPush){
 			      sendPush({ message: "Согласуйте результаты этапа" })
-		 })
+		 })*/
 	  })
 	};
 	
