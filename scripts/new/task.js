@@ -265,9 +265,9 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		 } 
 		 //изменяем статус задачи
 		updateTaskStatus(taskId, status)
-		 /*require(['push'], function(sendPush){
+		 require(['push'], function(sendPush){
 			      sendPush({ message: "Согласуйте результаты этапа" })
-		 })*/
+		 })
 	  })
 	};
 	
