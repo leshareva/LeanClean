@@ -25,11 +25,7 @@ define(['jquery', 'templates'], function($, templates) {
 						})
 						
 						document.querySelector('.blank_page').innerHTML = ''
-					    loadTasks();
-					    require(['notifications'], function(notifications) {
-						     notifications.getNotification(uid)
-					    })
-					   
+					    loadTasks();   
 				})
 		};	 
 
@@ -89,6 +85,11 @@ define(['jquery', 'templates'], function($, templates) {
 					  li.querySelector('.taskContainer__taskStatus').textContent = "Исходники";			
 				  	}
 		
+				  	var uid = auth.currentUser.uid
+				  	
+				  	require(['notifications'], function(notifications) {
+						     notifications.getNotification(uid)
+					    })
 		
 					 var chatDoorText = li.querySelector('.taskContainer__taskText');
 					 var chatDoorStatus = li.querySelector('.taskContainer__taskStatus');
@@ -113,6 +114,7 @@ define(['jquery', 'templates'], function($, templates) {
 								document.getElementById('stock-container').style.display = "none"
 								
 								chat.openChatRoom(taskId)
+								
 								require(['task'], function(taskMethods){
 									taskMethods.loadTaskInfo(taskId)
 								})

@@ -132,12 +132,18 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		})
 	}
 	
+<<<<<<< HEAD
 
     
     
     
     function sendAwareness() {
         var taskId = document.querySelector('.chatRoom').getAttribute("id");
+=======
+	
+	function sendAwareness() {
+		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+>>>>>>> 04bbf13ee054c9a4c78369a8ddd4e17da9e6ad55
 		let awarenessField = document.getElementById('awarenessField');
 		let timeField = document.getElementById('timeField');
 		let userId = auth.currentUser.uid;
