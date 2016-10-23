@@ -133,17 +133,11 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	}
 	
 
-
     
     
     
     function sendAwareness() {
         var taskId = document.querySelector('.chatRoom').getAttribute("id");
-
-	
-	function sendAwareness() {
-		var taskId = document.querySelector('.chatRoom').getAttribute("id")
-
 		let awarenessField = document.getElementById('awarenessField');
 		let timeField = document.getElementById('timeField');
 		let userId = auth.currentUser.uid;
@@ -220,7 +214,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
              inputConcept.addEventListener('change', saveImages.bind(this));
 		})
 	};
-    
+      
     
     
     function editDesign() {
@@ -271,9 +265,9 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		 } 
 		 //изменяем статус задачи
 		updateTaskStatus(taskId, status)
-		 require(['push'], function(sendPush){
+		 /*require(['push'], function(sendPush){
 			      sendPush({ message: "Согласуйте результаты этапа" })
-		 })
+		 })*/
 	  })
 	};
 	

@@ -131,7 +131,7 @@ define(['jquery', 'templates'], function($, templates) {
 				}
 					 
 			
-			  	
+			  	   
 					
 				$('.myTasks').on('click','li', function(){
 					$(this).addClass('taskContainer__taskText_active').siblings().removeClass('taskContainer__taskText_active');

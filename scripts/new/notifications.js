@@ -13,13 +13,13 @@ define([], function() {
 			var taskCont = document.getElementById(taskId)
 			document.getElementById('bells').play();
 			document.getElementById('bells').volume = 0.1;
-<<<<<<< HEAD
+
 			document.querySelector('.bullet').style.display = "block"
-=======
+
 //taskCont.querySelector('.bullet').style.display = "block"
->>>>>>> 19e16120c8dc20384e8b118361c85db45bd7fc8a
+
 		})
-	}
+	}  
 	
 	notifications.removeNotification = function(userId, taskId) {
 		var ref = database.ref('notifications/' + userId).orderByChild("taskId").equalTo(taskId)
