@@ -76,6 +76,11 @@ html, body {
 }
 
 
+.newMessage
+{
+    background-color: #CBDCE0;
+}
+
 
 h4 {
 	font-size: 24px;

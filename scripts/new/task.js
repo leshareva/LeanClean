@@ -7,7 +7,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	var auth = firebase.auth();
 	var database = firebase.database();
 	var storage = firebase.storage();
-	var taskId = document.querySelector('.chatRoom').getAttribute('id')
+	var taskId = document.querySelector('.chatRoom').getAttribute('id');
 	
 	
 	var awarenessForm = document.querySelector(".aboutTask__awarenessForm")
