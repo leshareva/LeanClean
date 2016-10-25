@@ -14,9 +14,9 @@ define([], function() {
 			document.getElementById('bells').play();
 			document.getElementById('bells').volume = 0.1;
 
-			document.querySelector('.bullet').style.display = "block"
+			//document.querySelector('.bullet').style.display = "block"
 
-//taskCont.querySelector('.bullet').style.display = "block"
+           // taskCont.querySelector('.bullet').style.display = "block"
 
 		})
 	}  
@@ -25,7 +25,7 @@ define([], function() {
 		var ref = database.ref('notifications/' + userId).orderByChild("taskId").equalTo(taskId)
 		ref.on('child_added', snap => {
 			var delRef = database.ref('notifications/' + userId + '/' + snap.key)
-// 			delRef.remove()	
+			delRef.remove()	
 			var taskCont = document.getElementById(taskId)
 			//taskCont.querySelector('.bullet').style.display = "none"
 		})

@@ -218,7 +218,8 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
     
     
     function editDesign() {
-		var taskId = document.querySelector('.chatRoom').getAttribute("id")
+		var taskId = document.querySelector('.chatRoom').getAttribute("id");
+        console.log(taskId);
 		var taskRef = database.ref("tasks/" + taskId);
 		taskRef.update({status: "design"})
 		taskRef.child("design").once('child_added', snap => {
@@ -241,6 +242,7 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 
 	
 	function saveImages(event) {
+      var taskId = document.querySelector('.chatRoom').getAttribute("id");
 	  var files = event.target.files;
 	  var status = "";
 	  var clientId = "";
@@ -265,9 +267,9 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		 } 
 		 //изменяем статус задачи
 		updateTaskStatus(taskId, status)
-		 /*require(['push'], function(sendPush){
+		 require(['push'], function(sendPush){
 			      sendPush({ message: "Согласуйте результаты этапа" })
-		 })*/
+		 })
 	  })
 	};
 	
@@ -291,11 +293,14 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 	        console.error('There was an error uploading a file to Firebase Storage:', error);
 		 }, function() {
 			 var filePath = uploadTask.snapshot.downloadURL;
+              var taskId = document.querySelector('.chatRoom').getAttribute("id");
+              database.ref("tasks" + "/" + taskId + "/" + status).set({state:'none'});
 			database.ref("tasks" + "/" + taskId + "/" + status).push({imgUrl: filePath.toString(), imageWidth: width, imageHeight: height });	 
 	      }.bind(this));	
 	}
 	
 	function updateTaskStatus(taskId, status) {
+        var taskId = document.querySelector('.chatRoom').getAttribute("id");
 		database.ref("tasks/" + taskId).update({status: status + "Approve"})
 		database.ref("tasks/" + taskId + "/" + status).update({status: "none"}) 
 	}
