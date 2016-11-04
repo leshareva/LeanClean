@@ -17,12 +17,14 @@ define([''], function() {
 				   	 for (var i = 0, token; token = tokens[i]; i++) {
 					  	values["token"] = token;
 					 	values["clientId"] = clientId;
+                         values["taskId"] = key;
+    
 					 	 database.ref('push').push(values)
 					 }
 				})
 		 })
 		}
 		
-		return sendPush	 
+		return sendPush;
 	
 })

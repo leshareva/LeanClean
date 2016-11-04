@@ -112,6 +112,9 @@ ul {
   height: 100%;
   padding-top: 0;
 }
+
+
+
 #messages {
   overflow-y: auto;
   margin-bottom: 10px;

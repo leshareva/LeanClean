@@ -32,7 +32,7 @@ define(['jquery', 'templates'], function($, templates) {
 		
 	  if (messageInput.value) {
 	      submitButton.removeAttribute('disabled');
-	      document.querySelector('.mdl-textfield__label').style.dislplay = "none"
+	      document.querySelector('.mdl-textfield__label').style.dislplay = "none";
 	  } else {
 	     submitButton.setAttribute('disabled', 'true');
 	  }
@@ -46,7 +46,7 @@ define(['jquery', 'templates'], function($, templates) {
 			   
 			   var text = messageInput.value
 			  require(['push'], function(sendPush){
-			      sendPush({ message: text })
+			      sendPush({ message: text });
 			       
 		      })
 		      
@@ -133,14 +133,14 @@ define(['jquery', 'templates'], function($, templates) {
 				let messagesTaksRef =  database.ref('messages').child(key);
 				messagesTaksRef.on('value', data => {
 			  	var val = data.val();
-			  	displayMessage(data.key, val.fromId, val.photoUrl, val.status, val.taskId, val.text, val.toId, val.name, val.imageUrl);
+			  	displayMessage(data.key, val.fromId, val.photoUrl, val.status, val.taskId, val.text, val.toId, val.name, val.imageUrl, val.timestamp);
 		  		});  			
 		}
 	})	  
 	}
 	
 	
-	function displayMessage(key, fromId, photoUrl, status, taskId, text, toId, name, imageUri) {
+	function displayMessage(key, fromId, photoUrl, status, taskId, text, toId, name, imageUri, timeStamp) {
 		
 		var div = document.getElementById(key);
 		  // If an element for that message does not exists yet we create it.
@@ -159,13 +159,14 @@ define(['jquery', 'templates'], function($, templates) {
 			div.querySelector('.pic').style.backgroundImage = 'url(' + photoUrl + ')';
 		  }
 		  
-		  div.querySelector('.name').textContent = name;
+		  div.querySelector('.name').textContent = name + ' (' + timeConverter(timeStamp) + ')';
 		  
 		  var messageElement = div.querySelector('.message');
 		  if (text) { // If the message is text.
-		    messageElement.textContent = text;
+            messageElement.innerHTML = replaceURLWithHTMLLinks(text);
 		    // Replace all line breaks by <br>.
 		    messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
+              
 		  } else if (imageUri) { // If the message is an image.
 		    var image = document.createElement('img');
 			
@@ -230,6 +231,49 @@ define(['jquery', 'templates'], function($, templates) {
 		
 	};
 	
+    
+    //find urls in text
+    function replaceURLWithHTMLLinks(text)
+    {
+      /*var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+      return text.replace(exp,"<a href='$1'>$1</a>"); */
+        var exp = /(\b(((https?|ftp|file|):\/\/)|www[.])[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+        var temp = text.replace(exp,"<a href=\"$1\" target=\"_blank\">$1</a>");
+        var result = "";
+
+        while (temp.length > 0) {
+            var pos = temp.indexOf("href=\"");
+            if (pos == -1) {
+                result += temp;
+                break;
+            }
+            result += temp.substring(0, pos + 6);
+
+            temp = temp.substring(pos + 6, temp.length);
+            if ((temp.indexOf("://") > 8) || (temp.indexOf("://") == -1)) {
+                result += "http://";
+            }
+        }
+
+        return result;
+    }
+    
+    
+  //  timestamp converter
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year ;
+  return time;
+}
+    
 	
 	function sendValuesToMessages(values, taskId) {
 		if (taskId == undefined) {

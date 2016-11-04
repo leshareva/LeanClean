@@ -34,7 +34,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 			
 			if (val.status == "awareness") {
 				//показываем форму для заполнения понимания задачи
-				document.querySelector(".aboutTask__step_one").className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.remove( "aboutTask__step_active");
+                 stepThree.classList.remove( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				taskInfoView.setAttribute("hidden", "true")
 			 	awarenessForm.innerHTML = templates.AWARENESS_VIEW;
 			 	document.getElementById('btnSendAwareness').addEventListener('click', sendAwareness.bind(this))	
@@ -42,7 +45,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				taskInfoView.setAttribute("hidden", "true")
 				//показываем форму «ждем подтверждения»
 				awarenessForm.innerHTML = templates.WAITING_APPROVE;
-				stepOne.className += " aboutTask__step_active"
+                 stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.remove( "aboutTask__step_active");
+                 stepThree.classList.remove( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				awarenessForm.style.display = 'block';
 				 
 				taskRef.child("awareness").once('child_added', snap => {
@@ -56,8 +62,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				
 				alert.innerHTML = "Клиент утвердил понимание задачи"
 				alert.removeAttribute("hidden")
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.remove( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				
 				awarenessForm.querySelector(".aboutTask__Title").textContent = "Работаем над черновиком"
 				awarenessForm.querySelector(".awarenessForm__p").textContent = "Помним, что черновик это очень быстро и главное свериться с клиентом - туда ли мы движемся."
@@ -66,8 +74,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 					
 			} else if (val.status == "conceptApprove") {
 				awarenessForm.innerHTML = templates.WAITING_APPROVE;
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.remove( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				awarenessForm.style.display = 'block';
 				awarenessForm.querySelector('.aboutTask__link').addEventListener('click', editConcept.bind(this));
 				
@@ -76,9 +86,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				var alert = awarenessForm.querySelector('.alert_paper')
 				alert.innerHTML = "Клиент утвердил черновик"
 				alert.removeAttribute("hidden")
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
-				stepThree.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.add( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				awarenessForm.querySelector(".aboutTask__Title").textContent = "Выгрузите чистовики на согласование"
 				awarenessForm.querySelector(".awarenessForm__p").textContent = "Сначала обсудите с клиентом черновки в чате и по телефону, когда он одобрит их, отправьте их на согласование, чтобы закрыть этап."
 				let inputConcept = document.getElementById("imgConcept");
@@ -87,8 +98,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 		
 			} else if (val.status == "designApprove") {
 				awarenessForm.innerHTML = templates.WAITING_APPROVE;
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.add( "aboutTask__step_active");
+                 stepFour.classList.remove( "aboutTask__step_active");
 				awarenessForm.style.display = 'block';
 				awarenessForm.querySelector('.aboutTask__link').addEventListener('click', editDesign.bind(this));
 				
@@ -97,10 +110,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				var alert = awarenessForm.querySelector('.alert_paper')
 				alert.innerHTML = "Клиент утвердил чистовик"
 				alert.removeAttribute("hidden")
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
-				stepThree.className += " aboutTask__step_active"
-				stepFour.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.add( "aboutTask__step_active");
+                 stepFour.classList.add( "aboutTask__step_active");
 				awarenessForm.querySelector(".aboutTask__Title").textContent = "Выгрузите исходники"
 				awarenessForm.querySelector(".awarenessForm__p").textContent = "Загрузите их на гугл-драйв и сюда прикрепите ссылку"
 				var textField = document.getElementById("textField");
@@ -119,10 +132,10 @@ define(['templates', 'firebase', 'fsconfig'], function(templates) {
 				
 			} else if (val.status == "done") {
 				awarenessForm.innerHTML = templates.CONCEPT_VIEW;
-				stepOne.className += " aboutTask__step_active"
-				stepTwo.className += " aboutTask__step_active"
-				stepThree.className += " aboutTask__step_active"
-				stepFour.className += " aboutTask__step_active"
+				stepOne.classList.add( "aboutTask__step_active");
+                 stepTwo.classList.add( "aboutTask__step_active");
+                 stepThree.classList.add( "aboutTask__step_active");
+                 stepFour.classList.add( "aboutTask__step_active");
 				awarenessForm.style.display = 'block';			
 				location.reload()
 
